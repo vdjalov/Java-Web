@@ -1,0 +1,59 @@
+#main{   
+    background: url(../images/background.png) no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+
+#logo {
+    height: 80px;
+    margin-top: 10px;
+    margin-right: 12px;
+    position: absolute;
+    top: 0px;
+    right: 1%;
+}
+
+#column{
+    border: 1px solid blue;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#wizard {
+    display: inline-block;
+    width: 250px;
+    height:290px;
+    position: relative;
+    bottom: 0px;
+   
+}
+
+.radio {
+    padding-left: 10px;
+    margin-top: 20px;
+}
+
+
+#column h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 18px;
+    margin-bottom: 26px;
+}
+
+
+header div h1 {
+    color: white;
+    float: left;
+    margin-left: 12px;
+}
+
+header div {
+    height: 100px;
+   
+}
+
+
+.container {
+    margin-top: 20px;
+}
+

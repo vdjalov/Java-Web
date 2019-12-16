@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+   
+    <!-- scripts -->
+    <script src="scripts/solution.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
+   
+</head>
+<body id="main">
+    <header>
+        <div style="background-color: blue;">
+            <img src="./images/logo.png" alt="logo" id="logo">
+            <h1 id="header-inscription">Softuni Courses</h1>
+        </div>
+    </header>
+
+    <div class="container" >
+        <div class="row">
+          <div class=" col-sm-4 " id="column">
+              <h3>Available Courses</h3>
+              <ul style="list-style: none;">
+                <li><label><input class = "checkbox" type="checkbox" value="170"> Java Fundamentals</label></li>
+                <li><label><input class = "checkbox" type="checkbox" value="180"> Java Advanced</label></li>
+                <li><label><input class = "checkbox" type="checkbox" value="190"> Java DB</label></li>
+                <li><label><input class = "checkbox" type="checkbox" value="490"> Java Web</label></li>
+              </ul>
+            <div class="radio">
+                <label> OnSite <input type="radio" name = "form" value="on-site" checked></label>
+                <label> OnLine <input type="radio" name = "form" value="on-line">  </label><br>
+            </div>
+              <div style="text-align: center">
+                  <input class= "btn btn-primary m-3" style = "width: 100px;" type="button" value="Sign me up" onclick="solve()">
+              </div>
+          </div>
+          <div class="offset-sm-3 col-sm-4" id="column">
+                <h3>My Courses</h3>
+                <ul id="added-courses"></ul>
+                <p style="text-align: center;"><span id="final-cost">Cost: 0.00 BGN</span></p>
+                <p style="text-align: center;"><span id="bonus-course">Bonus course: No</span></p>
+        </div>
+        </div>
+      </div>
+      <footer>
+            <div style="text-align: center;">
+                <a href="https://softuni.bg/"><img src="images/wizard.png" alt="wizzard image" id= "wizard"></a>
+            </div>
+      </footer>
+
+      <script src="scripts/solution.js"></script>
+</body>
+</html>

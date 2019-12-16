@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses</title>
+    <!-- styles -->
+<link rel="stylesheet" href="./styles/bootstrap.min.css">
+<link rel="stylesheet" href="./styles/style.css">
+
+    <!-- scripts -->
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="./scripts/solution.js"></script>    
+<script src="./scripts/additionalHtml.js"></script>
+
+
+</head>
+<body>
+    <header>
+        <h1>Softuni Courses</h1>
+        <img class="logo-upper-right-corner" src="./images/logo.png" alt="logo">
+    </header> 
+    <section class="row">
+        <div class="offset-sm-2 col-sm-3" id="column">
+            <h2>Available Courses</h2>
+            <ul id="available-courses">
+                
+            </ul>
+            <ul id="online-onsite">
+                
+            </ul>
+
+            <label id="sign-up-button-label"><input type="button" value="Sign me up" class="btn btn-primary" onclick="solve()"></label>
+        </div>
+        <div class="offset-sm-2 col-sm-3" id="column">
+            <h2>My Courses</h2>
+            <ul id="my-courses">
+
+            </ul>
+            <p style="text-align: center;"><span id="result">Cost: 0.00 BGN</span></p>
+        </div>
+    </section>
+    <footer>
+      <a href="https://softuni.bg/"><img src="./images/wizard.png" alt="wizzard logo" id="wizzard"></a>
+    </footer>
+</body>
+</html>
