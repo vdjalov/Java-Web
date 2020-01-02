@@ -1,0 +1,1 @@
+Exercise fitted for JSF
