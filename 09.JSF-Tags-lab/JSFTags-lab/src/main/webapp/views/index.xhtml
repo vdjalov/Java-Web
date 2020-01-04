@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<title>index</title>
+</head>
+
+<body>
+
+<ui:insert>
+	<ui:include src="/views/header.xhtml" />
+</ui:insert>
+
+<h:form>
+	<h3>Read only input text box</h3>
+		<h:inputText value="Hello World" readonly="true"/>
+	<h3>Ordinary text box</h3>
+		<h:inputText value="Hello World"/>
+	<h3>My text</h3>
+		<h:inputText value="#{indexBean.message}" />	
+	<h3>Read only input password box</h3>
+		<h:inputSecret value="password" readonly="" />	
+	<h3>Normal password text box</h3>
+		<h:inputSecret value= "password"></h:inputSecret>
+</h:form>
+<div></div>
+<h:form>
+	<h3>Read Only Input TextArea</h3>
+		<h:inputTextarea row="10" col="10" value="Hello World" readonly="true"/>
+	<h3>Normal Text Area</h3>
+		<h:inputTextarea value="Hello World"/>	
+</h:form>
+<div></div>	
+<h:form>
+	<h3>Just a text</h3>
+	<h:outputText value="Some text" />
+	
+	<h:selectBooleanCheckbox value="boolean checkbox" />
+
+	<h:selectOneRadio value="Radio Button">
+		<f:selectItem itemValue="Red" itemLabel="Color1 - Red" />
+   		<f:selectItem itemValue="Green" itemLabel="Color1 - Green" />
+	</h:selectOneRadio>
+	
+	<h:commandButton action="#{indexBean.setLogo}" value="Sumbit" />
+</h:form>
+<h:form>
+<h:commandButton type="submit" action="#{nextBean.goToNextPage}" value="Next Page" />
+</h:form>
+
+<div>	
+	<h:outputText value = "100.12345" >
+	    <f:convertNumber pattern ="#000.0" />
+	</h:outputText>
+</div>
+<div>
+	<h:outputText value = "$100" >
+	    <f:convertNumber currencySymbol="$" type="currency" />
+	</h:outputText>
+</div>	
+<div>
+	<h:outputText value="#{dateBean.date}">
+        <f:convertDateTime type="date" dateStyle="medium"/>
+    </h:outputText>
+</div>
+<div>
+	<h:outputText value="#{dateBean.date}">
+        <f:convertDateTime locale="bg" type="date" dateStyle="full"/>
+    </h:outputText>
+</div>	
+	
+<ui:insert>
+	<ui:include src="/views/footer.xhtml" />
+</ui:insert>
+
+
+
+
+</body>
+</html>
