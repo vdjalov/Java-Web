@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:include src="./templates/head.xhtml"/>
+<h:body>
+	<ui:insert>
+		<ui:include src="./templates/user-header.xhtml" />
+	</ui:insert>
+		
+	<main>
+        <hr class="my-3"/>
+        <div class="text-center mb-4">
+            <h1>Job Details</h1>
+        </div>
+        <hr class="my-3"/>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="label mt-2">
+                        <h2 class="text-center">Sector</h2>
+                        <h4 class="text-center"><h:outputText value="#{jobDetailsBean.jobById.sector.toString().charAt(0)}#{jobDetailsBean.jobById.sector.toString().substring(1).toLowerCase()}" /></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center">Profession</h2>
+                        <h4 class="text-center"><h:outputText value="#{jobDetailsBean.jobById.profession}" /></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center">Salary</h2>
+                        <h4 class="text-center"><h:outputText value="$#{jobDetailsBean.jobById.salary}" /></h4>
+                    </div>
+                    <div class="label mt-4">
+                        <h2 class="text-center">Description</h2>
+                        <p class="text-center"><h:outputText value="#{jobDetailsBean.jobById.description}" /></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="my-3"/>
+    </main>
+
+	<ui:insert>
+		<ui:include src="./templates/footer.xhtml" />
+	</ui:insert>
+
+</h:body>
+</html>

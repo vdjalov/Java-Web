@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:include src="./templates/head.xhtml" />
+
+<h:body>
+	<ui:insert>
+		<ui:include src="./templates/user-header.xhtml" />
+	</ui:insert>
+	
+	<main>
+        <hr class="my-3"/>
+        <div class="text-center mb-3">
+            <h4 class="text-info">"Welcome, #{session.getAttribute("username")}" </h4>
+        </div>
+        <hr class="my-3"/>
+        <div class="container">
+            <div class="row mb-4 d-flex justify-content-around">
+	            <ui:repeat var="job" value="#{homeBean.allJobs}">
+		  			 <div class="col-md-3 d-flex flex-column text-center">
+		  			 	<h:graphicImage styleClass="img-thumbnail" value="../jpg/#{job.sector.toString().toLowerCase()}.jpg" />
+	                    <h5 class="text-center"><h:outputText value= "#{job.profession}"/></h5>
+	                    <h:form>
+		                    <h:link styleClass="btn btn-info" outcome="job-details.xhtml?id=#{job.id}" value="Details"/>
+	                   </h:form>
+	                   
+	                    <h:form>
+	                   		<h:link  styleClass="btn btn-danger" outcome="delete-job.xhtml?id=#{job.id}" value="Delete"/>
+	                   	</h:form>
+	                </div>
+	  	 		</ui:repeat> 
+            </div>
+        </div>
+        <hr class="my-3"/>
+    </main>
+	
+	<ui:insert>
+		<ui:include src="./templates/footer.xhtml" />
+	</ui:insert>
+
+</h:body>
+</html>

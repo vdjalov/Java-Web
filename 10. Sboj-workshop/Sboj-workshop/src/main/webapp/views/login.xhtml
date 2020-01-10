@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:include src="./templates/head.xhtml" />
+
+<body>
+	<ui:insert>
+		<ui:include src="./templates/guest-header.xhtml"></ui:include>
+	</ui:insert>	
+
+	<main>
+        <hr class="my-3"/>
+        <h1 class="text-center">Login</h1>
+        <hr class="hr-3"/>
+        <h:form class="mx-auto w-15" method="post">
+            <div class="form-group">
+                <div class="label-holder d-flex justify-content-center">
+	                <h:outputLabel value= "Username" styleClass="h3 mb-2 text-center">
+		              <h:inputText styleClass= "form-control" name= "username" value="#{loginUser.username}"/>
+		            </h:outputLabel>    
+                </div>    
+            </div>
+            <div class="form-group">
+                <div class="label-holder d-flex justify-content-center">
+                 	<h:outputLabel value= "Password" styleClass="h3 mb-2 text-center">
+		              <h:inputSecret styleClass= "form-control" name= "password" value="#{loginUser.password}"/>
+		            </h:outputLabel>
+                </div>
+            </div>
+            <div class="button-holder d-flex justify-content-center">
+            	<h:commandButton styleClass="btn btn-info text-white" action="#{loginUser.verifyCredentials}" value="Login"/>
+            </div>
+            	<h:message style="color:red;" warnClass="warn"/>
+        </h:form>
+        <hr class="my-3"/>
+    </main>
+
+	<ui:insert>
+		<ui:include src="./templates/footer.xhtml"/>
+	</ui:insert>
+</body>
+</html>

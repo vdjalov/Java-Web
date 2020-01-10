@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:include src="./templates/head.xhtml" />
+<body>
+	<ui:insert>
+		<ui:include src="./templates/guest-header.xhtml"></ui:include>
+	</ui:insert>	
+	
+	<main>
+        <hr class="my-3"/>
+        <h1 class="text-center">Register</h1>
+        <hr class="hr-3"/>
+        <h:form class="mx-auto w-15" method="post">
+            <div class="form-group">
+	            <h:outputLabel value= "Username" styleClass="h3 mb-2 text-center">
+	              <h:inputText id= "username" styleClass= "form-control" a:placeholder="Charlie..." name= "username" value="#{createUser.userBindingModel.username}"/>
+	            </h:outputLabel>
+	            <h:message for="username" style="color: red"/>
+            </div>
+            <div class="form-group">
+             	<h:outputLabel value= "Password" styleClass="h3 mb-2 text-center">
+	              <h:inputSecret id="password" styleClass= "form-control" name= "password" value="#{createUser.userBindingModel.password}"/>
+	            </h:outputLabel>
+	              <h:message for="password" style="color: red"/>
+	            
+            </div>
+            <div class="form-group">
+            	 <h:outputLabel value= "Confirm Password" styleClass="h3 mb-2 text-center">
+            	 	<h:inputSecret id="confirm-password" styleClass= "form-control" name= "confirm password" value="#{createUser.userBindingModel.confirmPassword}"/>	
+            	 </h:outputLabel>
+	             <h:message for="confirm-password" style="color: red"/>
+            </div>
+            <div class="form-group">
+            	<h:outputLabel value= "Email" styleClass="h3 mb-2 text-center">
+	              <h:inputText id="email" styleClass= "form-control" a:placeholder="Charlie@email.com....." name= "email" value="#{createUser.userBindingModel.email}"/>
+	            </h:outputLabel>
+	             <h:message for="email" style="color: red"/>
+            </div>
+           
+            <div class="button-holder d-flex justify-content-center">
+             	<h:commandButton styleClass="btn btn-info text-white" action="#{createUser.saveUser}" value="Register" />
+             	<h:messages for="register" style="color: green;" />
+            </div>
+        </h:form>
+        <hr class="my-3"/>
+    </main>
+
+	<ui:insert>
+		<ui:include src="./templates/footer.xhtml"/>
+	</ui:insert>
+</body>
+</html>
