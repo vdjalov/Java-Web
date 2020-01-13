@@ -21,13 +21,13 @@
                 <div class="label-holder d-flex justify-content-center">
                     <label for="username" class="h3 mb-2">Username</label>
                 </div>
-                <h:inputText styleClass="form-control" id="username" value="#{loginUser.loginUserServiceModel.username}" />
+                <h:inputText styleClass="form-control" id="username" value="#{loginUser.userLoginBindingModel.username}" />
             </div>
             <div class="form-group">
                 <div class="label-holder d-flex justify-content-center">
                     <label for="password" class="h3 mb-2">Password</label>
                 </div>
-                  <h:inputSecret styleClass="form-control" id="password" value="#{loginUser.loginUserServiceModel.password}" />
+                  <h:inputSecret styleClass="form-control" id="password" value="#{loginUser.userLoginBindingModel.password}" />
             </div>
             <div class="button-holder d-flex justify-content-center">
             	<h:commandButton styleClass="btn btn-info text-white" action="#{loginUser.verifylogin}" value="Login" />

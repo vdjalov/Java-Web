@@ -41,6 +41,16 @@ public class LoginUserBean {
 	public void verifylogin() {
 		this.userService.verify(this.modelMapper.map(this.userLoginBindingModel, UserLoginServiceModel.class));
 	}
+
+
+	public UserLoginBindingModel getUserLoginBindingModel() {
+		return userLoginBindingModel;
+	}
+
+
+	public void setUserLoginBindingModel(UserLoginBindingModel userLoginBindingModel) {
+		this.userLoginBindingModel = userLoginBindingModel;
+	}
 	
 	
 

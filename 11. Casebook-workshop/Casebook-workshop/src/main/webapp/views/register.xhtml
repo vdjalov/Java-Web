@@ -44,12 +44,11 @@
                 <h:inputText styleClass="form-control" value="#{createUser.userRegisterBindingModel.gender}" />
             </div>
             <div class="button-holder d-flex justify-content-center">
-            	<h:commandButton styleClass="btn btn-info text-white" action="#{createUser.registerUser()}" value="Register" />
+            	<h:commandButton styleClass="btn btn-info text-white" action="#{createUser.registerUser}" value="Register" />
             </div>
         </h:form>
         <hr class="my-3"/>
     </main>
-
 
 	<ui:insert>
 		<ui:include src="./templates/footer.xhtml" />

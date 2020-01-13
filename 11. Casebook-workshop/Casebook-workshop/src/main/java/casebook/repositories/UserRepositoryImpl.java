@@ -1,6 +1,6 @@
 package casebook.repositories;
 
-import java.util.Optional;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -33,12 +33,49 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public boolean confirmDetails(String username, String password) {
-		int user = this.entityManager.createNamedQuery("select * from users as u where u.username= :username and u.password= :password", User.class)
-										  .setParameter("username", username)
-										  .setParameter("password", password)
-										  .getFirstResult();
+		@SuppressWarnings("unchecked")
+		List<User> currentUser = (List<User>) this.entityManager.createNativeQuery("select * from users as u where u.username= :username and u.password= :password", User.class)
+									.setParameter("username", username)
+									.setParameter("password", password)
+									.getResultList();
 		
-		return user != 0;
+		return currentUser.size() > 0;
+	}
+
+
+
+	@Override
+	public List<User> findAllUsers() {
+		@SuppressWarnings("unchecked")
+		List<User> allUsers = this.entityManager.createNativeQuery("select * from users", User.class)
+												.getResultList();
+		return allUsers;
+	}
+
+
+
+	@Override
+	public User findByUsername(String username) {
+		@SuppressWarnings("unchecked")
+		List<User> user = this.entityManager.createNativeQuery("select * from users as u where u.username= :username", User.class)
+											.setParameter("username", username)
+											.getResultList();
+		
+		return user.get(0);
+	}
+
+
+
+	@Override
+	public void updateUserFriends(User friend, String username) {
+		
+		this.entityManager.getTransaction().begin();
+		User user = this.findByUsername(username);
+		user.getFriends().add(friend);
+		this.entityManager.merge(user);
+		this.entityManager.getTransaction().commit();
+		this.entityManager.close();
+		
 	}
 
 	

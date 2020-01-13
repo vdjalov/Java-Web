@@ -1,6 +1,10 @@
 package casebook.service;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import org.modelmapper.ModelMapper;
@@ -9,6 +13,7 @@ import casebook.context.SessionContext;
 import casebook.domain.entity.User;
 import casebook.domain.models.service.UserLoginServiceModel;
 import casebook.domain.models.service.UserRegisterServiceModel;
+import casebook.domain.models.view.UserViewModel;
 import casebook.repositories.UserRepository;
 
 public class UserServiceImpl implements UserService {
@@ -43,11 +48,38 @@ public class UserServiceImpl implements UserService {
 		String username = userLoginServiceModel.getUsername();
 		String password = userLoginServiceModel.getPassword();
 			if(userRepository.confirmDetails(username, password)) {
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", username);
 				this.sessionContext.redirect("home");
 			} else {
 				// Do something !
 			}
 		
+	}
+
+
+	@Override
+	public List<UserViewModel> findAllUsers() {
+			List<UserViewModel> alluser = this.userRepository.findAllUsers()
+											  .stream()
+											  .map(user -> this.modelMapper.map(user, UserViewModel.class))
+											  .collect(Collectors.toList());
+		return alluser;
+	}
+
+
+	@Override
+	public void addFriend(String friendUsername, String currentLoggedInUsername) {
+		User friend = this.userRepository.findByUsername(friendUsername);
+		this.userRepository.updateUserFriends(friend, currentLoggedInUsername);
+		
+		this.sessionContext.redirect("friends");
+	}
+
+
+	@Override
+	public UserViewModel getCurrentLoggedUser(String username) {
+		User user = this.userRepository.findByUsername(username);
+		return this.modelMapper.map(user, UserViewModel.class);
 	}
 
 }

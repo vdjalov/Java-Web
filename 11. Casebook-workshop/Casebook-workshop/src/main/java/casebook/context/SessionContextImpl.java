@@ -17,4 +17,14 @@ public class SessionContextImpl implements SessionContext {
 		
 	}
 
+	@Override
+	public String getParameterMapAttribute(String attribute) {
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(attribute);
+	}
+
+	@Override
+	public String getSessionMapAttribute(String attribute) {
+		return (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(attribute);
+	}
+
 }

@@ -9,12 +9,38 @@
 <ui:include src="./templates/head.xhtml" />
 <body>
 
-<ui:insert>
-	<ui:include src="./templates/" />
-</ui:insert>
-
-
-
-
+	<ui:insert>
+		<ui:include src="./templates/user-header.xhtml" />
+	</ui:insert>
+	
+	<main>
+	     <hr class="my-2"/>
+		    <div class="text-center mt-3">
+		    	<h:form>
+		      	  <h:commandLink styleClass="h4 text-info" action= "profile.xhtml" value="Welcome, #{userDetails.username}"/>
+		      	</h:form>
+		    </div>
+	      <hr class="my-4"/>
+	      <div class="container">
+	          <div class="row mb-4 d-flex justify-content-around">
+	          	<ui:repeat var="user" value="#{getUsers.registeredUsers}">
+	              <div class="col-md-2 d-flex flex-column text-center">
+	              	  <h:graphicImage styleClass="img-thumbnail" value="/png/#{user.gender.toLowerCase()}.png" width="200" height="200"/> 
+	                  <h5 class="text-center">#{user.username}</h5>
+		                  <h:form>
+		                  	<h:inputHidden value="#{user.username}"/>
+		                    <h:commandButton styleClass="btn btn-info" action= "#{addFriendBean.addFriend}" value="Add Friend"/>
+		                  </h:form>
+	              </div>
+	             </ui:repeat> 
+	     	   </div>
+	     	 </div> 
+	      <hr class="my-3"/>
+	</main>
+	
+	<ui:insert>
+		<ui:include src="./templates/footer.xhtml" />
+	</ui:insert>
+	
 </body>
 </html>
