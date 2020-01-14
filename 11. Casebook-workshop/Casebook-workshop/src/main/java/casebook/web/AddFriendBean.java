@@ -30,13 +30,17 @@ public class AddFriendBean {
 
 
 	public void addFriend() {
-//		String friendUsername = sessionContext.getParameterMapAttribute("j_id_j:1:j_id_n:j_id_o");
+		String friendUsername = "";
 		String currentLoggedUser = this.sessionContext.getSessionMapAttribute("username");
-		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getSessionMap());
-		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap());
-		System.out.println();
+		int index = 0;
+		for(String element:FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().values()) {
+			if (index == 0) {
+				friendUsername = element;
+				break;
+			}
+		}
 		
-//		this.userService.addFriend(friendUsername, currentLoggedUser);	
+		this.userService.addFriend(friendUsername, currentLoggedUser);	
 		
 	}
 	

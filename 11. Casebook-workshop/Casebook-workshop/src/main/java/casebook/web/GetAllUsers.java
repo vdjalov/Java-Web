@@ -6,7 +6,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.modelmapper.ModelMapper;
 
 import casebook.domain.models.view.UserViewModel;
 import casebook.service.UserService;
@@ -17,7 +16,6 @@ public class GetAllUsers {
 
 	private UserService userService;
 
-	
 	
 	public GetAllUsers() {
 	}

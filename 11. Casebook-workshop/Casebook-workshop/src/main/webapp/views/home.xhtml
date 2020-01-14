@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:composite="http://java.sun.com/jsf/composite"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -22,17 +23,21 @@
 		    </div>
 	      <hr class="my-4"/>
 	      <div class="container">
+	      	
 	          <div class="row mb-4 d-flex justify-content-around">
-	          	<ui:repeat var="user" value="#{getUsers.registeredUsers}">
-	              <div class="col-md-2 d-flex flex-column text-center">
-	              	  <h:graphicImage styleClass="img-thumbnail" value="/png/#{user.gender.toLowerCase()}.png" width="200" height="200"/> 
-	                  <h5 class="text-center">#{user.username}</h5>
-		                  <h:form>
-		                  	<h:inputHidden value="#{user.username}"/>
-		                    <h:commandButton styleClass="btn btn-info" action= "#{addFriendBean.addFriend}" value="Add Friend"/>
-		                  </h:form>
-	              </div>
-	             </ui:repeat> 
+	          	<c:forEach var="user" items="#{getUsers.registeredUsers}">
+			        <c:if test="#{user.username != userDetails.username}">
+			           <div class="col-md-2 d-flex flex-column text-center">
+			           	 <h:form>
+			              	  <h:graphicImage styleClass="img-thumbnail" value="/png/#{user.gender.toLowerCase()}.png" width="200" height="200"/> 
+			                  <h5 class="text-center"><h:outputFormat value="#{user.username}"/></h5>
+			              
+			                  	<h:inputHidden value="#{user.username}"/>
+			                    <h:commandButton styleClass="btn btn-info" action= "#{addFriendBean.addFriend}" value="Add Friend"/>
+			             </h:form>
+			           </div>
+		            </c:if>
+	             </c:forEach> 
 	     	   </div>
 	     	 </div> 
 	      <hr class="my-3"/>

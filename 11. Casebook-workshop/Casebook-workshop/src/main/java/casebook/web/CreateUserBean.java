@@ -31,7 +31,6 @@ public class CreateUserBean {
 	}
 
 
-
 	@PostConstruct
 	void init() {
 		this.userRegisterBindingModel = new UserRegisterBindingModel();
