@@ -27,4 +27,10 @@ public class SessionContextImpl implements SessionContext {
 		return (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(attribute);
 	}
 
+	@Override
+	public void logoutUserSession() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		
+	}
+
 }

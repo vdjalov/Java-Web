@@ -13,6 +13,7 @@ import casebook.context.SessionContext;
 import casebook.domain.entity.User;
 import casebook.domain.models.service.UserLoginServiceModel;
 import casebook.domain.models.service.UserRegisterServiceModel;
+import casebook.domain.models.view.FriendViewModel;
 import casebook.domain.models.view.UserViewModel;
 import casebook.repositories.UserRepository;
 
@@ -80,6 +81,22 @@ public class UserServiceImpl implements UserService {
 	public UserViewModel getCurrentLoggedUser(String username) {
 		User user = this.userRepository.findByUsername(username);
 		return this.modelMapper.map(user, UserViewModel.class);
+	}
+
+
+	@Override
+	public List<FriendViewModel> findAllFriends(String username) {
+		List<FriendViewModel> allFriends = this.userRepository.findByUsername(username).getFriends()
+												     .stream().map(user -> this.modelMapper.map(user, FriendViewModel.class))
+												     .collect(Collectors.toList());
+		return allFriends;
+	}
+
+
+	@Override
+	public FriendViewModel getFriendById(String id) {
+		FriendViewModel friend = this.modelMapper.map(this.userRepository.findById(id), FriendViewModel.class);
+		return friend;
 	}
 
 }

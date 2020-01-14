@@ -15,4 +15,6 @@ public interface UserRepository {
 		public User findByUsername(String username);
 
 		public void updateUserFriends(User friend, String username);
+
+		public User findById(String id);
 }

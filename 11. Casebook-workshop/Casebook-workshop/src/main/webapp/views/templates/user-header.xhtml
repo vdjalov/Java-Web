@@ -21,13 +21,15 @@
 	            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
 	                <ul class="navbar-nav row">
 	                    <li class="nav-item col-md-4">
-	                    	<h:link styleClass="nav-link text-muted active h5" outcome="/vies/home.xhtml" value="Home"/>
+	                    	<h:link styleClass="nav-link text-muted active h5" outcome="/views/home.xhtml" value="Home"/>
 	                    </li>
 	                    <li class="nav-item col-md-4">
 	                   	 	<h:link styleClass="nav-link text-muted active h5" outcome="/views/friends.xhtml" value="Friends"/>
 	                    </li>
 	                    <li class="nav-item col-md-4">
-	                    	<h:link styleClass="nav-link text-muted active h5" outcome="/views/logout.xhtml" value="Logout"/>
+	                    	<h:form>
+	                    		<h:commandLink styleClass="nav-link text-muted active h5" action="#{logoutBean.logoutUser}" value="Logout"/>
+	                    	</h:form>
 	                    </li>
 	                </ul>
 	            </div>

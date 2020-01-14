@@ -1,10 +1,13 @@
 package casebook.web;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import casebook.context.SessionContext;
+import casebook.domain.models.view.FriendViewModel;
 import casebook.domain.models.view.UserViewModel;
 import casebook.service.UserService;
 
@@ -33,9 +36,14 @@ public class GetCurrentLoggedUserDetailsBean {
 	
 	public UserViewModel getUserDetails() {
 		String username = this.getUsername();
-		UserViewModel userViewModel = this.userService.getCurrentLoggedUser(username);
-		
+		UserViewModel userViewModel = this.userService.getCurrentLoggedUser(username);	
 		return userViewModel;
+	}
+	
+	public List<FriendViewModel> findAllFriends() {
+		String username = this.sessionContext.getSessionMapAttribute("username");
+		List<FriendViewModel> allFrineds = this.userService.findAllFriends(username);
+		return allFrineds;
 	}
 	
 	

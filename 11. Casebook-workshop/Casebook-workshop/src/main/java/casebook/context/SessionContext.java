@@ -6,4 +6,6 @@ public interface SessionContext {
 
 	String getParameterMapAttribute(String attribute);
 	String getSessionMapAttribute(String attribute);
+
+	void logoutUserSession();
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import casebook.domain.models.service.UserLoginServiceModel;
 import casebook.domain.models.service.UserRegisterServiceModel;
+import casebook.domain.models.view.FriendViewModel;
 import casebook.domain.models.view.UserViewModel;
 
 public interface UserService {
@@ -18,5 +19,9 @@ public interface UserService {
 	void addFriend(String friendUsername, String currentLoggedUser);
 
 	UserViewModel getCurrentLoggedUser(String username);
+
+	List<FriendViewModel> findAllFriends(String username);
+
+	FriendViewModel getFriendById(String id);
 	
 }

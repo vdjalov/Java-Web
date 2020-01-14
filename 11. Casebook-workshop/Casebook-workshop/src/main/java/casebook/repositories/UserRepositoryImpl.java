@@ -78,6 +78,18 @@ public class UserRepositoryImpl implements UserRepository {
 		
 	}
 
+
+
+	@Override
+	public User findById(String id) {
+		@SuppressWarnings("unchecked")
+		List<User> user = this.entityManager.createNativeQuery("select * from users as u where u.id= :id", User.class)
+											.setParameter("id", id)
+											.getResultList();
+		
+		return user.get(0);
+	}
+
 	
 	
 	
