@@ -22,9 +22,9 @@
         </div>
         <hr class="my-4"/>
         <div class="container">
-        	
-            <div class="row mb-4 d-flex justify-content-around">
-             	<ui:repeat var="friend" value="#{loadUsers.loadUsers()}" status="">
+             	<ui:repeat var="friend" value="#{loadUsers.loadUsers()}" varStatus="status">
+             		<h:outputText value="&lt;div class=&quot;row mb-4 d-flex justify-content-around&quot;&gt;"
+                              escape="false" rendered="#{status.index % 4 == 0}"/>
 	                <div class="col-md-2 d-flex flex-column text-center">
 	                	<h:graphicImage styleClass="img-thumbnail" value="/png/#{friend.gender.toLowerCase()}.png" />
 	                    <h5 class="text-center"><h:outputText value= "#{friend.username}"/></h5>
@@ -32,9 +32,8 @@
 	                   		<h:commandLink styleClass="btn btn-info" action="#{addFriendBean.addFriend(friend.username)}" value="Add Friend" />
 	                   	</h:form>	
 	                </div>
+	                <h:outputText value="&lt;/div&gt;" escape="false" rendered="#{status.index % 4 == 3}"/>
               </ui:repeat>
-            </div>
-            
         </div>
         <hr class="my-3"/>
     </main>
