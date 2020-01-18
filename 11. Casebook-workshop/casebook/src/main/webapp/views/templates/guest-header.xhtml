@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<title>Guest Header</title>
+</head>
+<h:body>
+	<ui:component>
+		<header>
+	        <nav class="navbar navbar-expand-lg navbar-light bg-casebook">
+	        	<h:link styleClass="navbar-brand text-muted h4" outcome = "/views/index.xhtml" value="Casebook"/>
+	        	
+	            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+	                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button>
+	            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+	                <ul class="navbar-nav row">
+	                    <li class="nav-item col-md-4">
+	                    	<h:link styleClass="nav-link text-muted active h5" outcome = "/views/home.xhtml" value="Home"/>
+	                    </li>
+	                    <li class="nav-item col-md-4">
+	                   		<h:link styleClass="nav-link text-muted active h5" outcome = "/views/login.xhtml" value="Login"/>
+	                    </li>
+	                    <li class="nav-item col-md-4">
+	                    <h:link styleClass="nav-link text-muted active h5" outcome = "/views/register.xhtml" value="Register"/>
+	                    </li>
+	                </ul>
+	            </div>
+	        </nav>
+	    </header>
+    </ui:component>
+</h:body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:include src="/views/templates/head.xhtml" />
+
+<h:body>
+<div class="container-fluid">
+	<ui:insert>
+		<ui:include src="/views/templates/user-header.xhtml" />
+	</ui:insert>
+
+	<main>
+        <hr class="my-2"/>
+        <div class="text-center mt-3">
+            <h3 class="text-info">Casebook</h3>
+            <h4 class="text-info">Connecting People</h4>
+        </div>
+        <hr class="my-4"/>
+        <div class="container">
+            <div class="row py-4 d-flex flex-column">
+ 				<ui:repeat var="friend" value="#{loadFriendsBean.findAllFriends()}">
+	                <div class="row d-flex flex-row col-md-5 mb-3 mx-auto">
+	                	 <h:link styleClass="col-md-6 h5 d-inline-block text-center" outcome="profile.xhtml?user=#{friend.username}" value="#{friend.username}"/>
+	                	  <h:form>
+	                		<h:commandLink styleClass="btn btn-info" type="submit" action="#{unfriendBean.unfriend(friend.username)}" value="Unfriend"/>
+	                	 </h:form> 
+	                </div>
+                </ui:repeat>
+            </div>
+        </div>
+        <hr class="my-3"/>
+    </main>
+	
+	<ui:insert>
+		<ui:include src="/views/templates/footer.xhtml" />
+	</ui:insert>
+</div>			
+</h:body>
+</html>
