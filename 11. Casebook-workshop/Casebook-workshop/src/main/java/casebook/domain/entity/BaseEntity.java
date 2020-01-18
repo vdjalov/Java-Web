@@ -13,6 +13,7 @@ public class BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	
 	public BaseEntity() {
 	}
 
@@ -23,8 +24,6 @@ public class BaseEntity {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
 	
 	
 	

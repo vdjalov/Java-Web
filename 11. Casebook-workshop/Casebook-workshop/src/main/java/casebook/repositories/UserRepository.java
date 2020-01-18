@@ -6,15 +6,10 @@ import casebook.domain.entity.User;
 
 public interface UserRepository {
 
-		public void save(User user);
-
-		public boolean confirmDetails(String username, String password);
-
-		public List<User> findAllUsers();
-
-		public User findByUsername(String username);
-
-		public void updateUserFriends(User friend, String username);
-
-		public User findById(String id);
+	void save(User user);
+	List<User> findAllUsers();
+	boolean confirmCredetials(String username, String password);
+	List<User>findAllFriends(String username);
+	User findUserByUsername(String username);
+	void update(User user);
 }

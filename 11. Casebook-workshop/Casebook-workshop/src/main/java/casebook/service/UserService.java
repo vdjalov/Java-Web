@@ -1,27 +1,27 @@
 package casebook.service;
 
-
 import java.util.List;
 
-import casebook.domain.models.service.UserLoginServiceModel;
-import casebook.domain.models.service.UserRegisterServiceModel;
-import casebook.domain.models.view.FriendViewModel;
-import casebook.domain.models.view.UserViewModel;
+import casebook.domain.model.service.UserLoginServiceModel;
+import casebook.domain.model.service.UserRegisterServiceModel;
+import casebook.domain.model.service.UserServiceModel;
+import casebook.domain.model.view.UserViewModel;
 
 public interface UserService {
 
-	void registerUser(UserRegisterServiceModel userRegisterServiceModel);
+	void registerUser(UserRegisterServiceModel userServiceModel);
 
-	void verify(UserLoginServiceModel userLoginServiceModel);
+	void verifyUserLogin(UserLoginServiceModel userLoginServiceModel);
 
-	List<UserViewModel> findAllUsers();
+	List<UserServiceModel> findAllUsers();
 
-	void addFriend(String friendUsername, String currentLoggedUser);
+	List<UserServiceModel> findAllCurrentFriends(String username);
 
-	UserViewModel getCurrentLoggedUser(String username);
+	UserServiceModel getUserByUsername();
 
-	List<FriendViewModel> findAllFriends(String username);
+	void addFriend(String friendUsername);
 
-	FriendViewModel getFriendById(String id);
-	
+	void unfriend(String friendUsername);
+
+
 }

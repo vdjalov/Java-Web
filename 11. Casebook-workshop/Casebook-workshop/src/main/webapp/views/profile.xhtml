@@ -6,30 +6,30 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:include src="./templates/head.xhtml" />
-<body>
+<ui:include src="/views/templates/head.xhtml" />
 
-	<ui:insert>
-		<ui:include src="./templates/user-header.xhtml" />
-	</ui:insert>
+<body>
 	
+	<ui:insert>
+		<ui:include src="/views/templates/user-header.xhtml" />
+	</ui:insert>
+
 	<main>
         <hr class="my-2"/>
         <div class="container-fluid">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-6 d-flex flex-column">
-                	<h:graphicImage styleClass="mx-auto img-thumbnail" width="200" height="200" value="/png/#{userDetails.userDetails.gender.toLowerCase()}.png" />
-                    <h4 class="mx-auto mt-3"><h:outputText value="#{userDetails.userDetails.username}" /></h4>
-                    <h5 class="mx-auto mt-3"><h:outputText value="#{userDetails.userDetails.gender.toLowerCase()}"/></h5>
+                	<h:graphicImage styleClass="mx-auto img-thumbnail" width="200" height="200" value="/png/#{getProfileDetails.profileDetailsByUsername.gender.toLowerCase()}.png" />
+                    <h4 class="mx-auto mt-3"><h:outputText value="#{getProfileDetails.profileDetailsByUsername.username}"/></h4>
+                    <h5 class="mx-auto mt-3"><h:outputText value="#{getProfileDetails.profileDetailsByUsername.gender}"/></h5>
                 </div>
             </div>
         </div>
         <hr class="my-3"/>
     </main>
-	
+
 	<ui:insert>
-		<ui:include src="./templates/footer.xhtml" />
+		<ui:include src="/views/templates/footer.xhtml" />
 	</ui:insert>
-		
 </body>
 </html>

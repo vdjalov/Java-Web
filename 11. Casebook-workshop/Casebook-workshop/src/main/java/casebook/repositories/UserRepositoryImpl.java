@@ -9,8 +9,8 @@ import casebook.domain.entity.User;
 
 public class UserRepositoryImpl implements UserRepository {
 
-	
 	private EntityManager entityManager;
+	
 	
 	
 	@Inject
@@ -18,32 +18,16 @@ public class UserRepositoryImpl implements UserRepository {
 		this.entityManager = entityManager;
 	}
 
-
-
 	@Override
 	public void save(User user) {
-		
-		this.entityManager.getTransaction().begin();
+		this.entityManager.getTransaction().begin();;
 		this.entityManager.persist(user);
 		this.entityManager.getTransaction().commit();
 		this.entityManager.close();
 	}
 
-
-
-	@Override
-	public boolean confirmDetails(String username, String password) {
-		@SuppressWarnings("unchecked")
-		List<User> currentUser = (List<User>) this.entityManager.createNativeQuery("select * from users as u where u.username= :username and u.password= :password", User.class)
-									.setParameter("username", username)
-									.setParameter("password", password)
-									.getResultList();
-		
-		return currentUser.size() > 0;
-	}
-
-
-
+	
+	
 	@Override
 	public List<User> findAllUsers() {
 		@SuppressWarnings("unchecked")
@@ -52,45 +36,45 @@ public class UserRepositoryImpl implements UserRepository {
 		return allUsers;
 	}
 
-
-
 	@Override
-	public User findByUsername(String username) {
+	public boolean confirmCredetials(String username, String password) {
 		@SuppressWarnings("unchecked")
-		List<User> user = this.entityManager.createNativeQuery("select * from users as u where u.username= :username", User.class)
+		List<User> users = this.entityManager.createNativeQuery("select * from users as u where u.username= :username and u.password= :password", User.class)
 											.setParameter("username", username)
-											.getResultList();
+											.setParameter("password", password)
+										    .getResultList();
 		
-		return user.get(0);
+		return users.size() > 0;
 	}
 
-
+	@Override
+	public List<User> findAllFriends(String username) {
+		@SuppressWarnings("unchecked")
+		List<User> allFriends = this.entityManager.createNativeQuery("select * from users as u where u.username= :username", User.class)
+											.setParameter("username", username)
+										    .getResultList();
+		
+						
+		return allFriends.get(0).getAllFriends();
+	}
 
 	@Override
-	public void updateUserFriends(User friend, String username) {
+	public User findUserByUsername(String username) {
+		@SuppressWarnings("unchecked")
+		List<User> allFriends = this.entityManager.createNativeQuery("select * from users as u where u.username= :username", User.class)
+											.setParameter("username", username)
+										    .getResultList();
 		
+						
+		return allFriends.get(0);
+	}
+
+	@Override
+	public void update(User user) {
 		this.entityManager.getTransaction().begin();
-		User user = this.findByUsername(username);
-		user.getFriends().add(friend);
 		this.entityManager.merge(user);
 		this.entityManager.getTransaction().commit();
-		this.entityManager.close();
 		
 	}
 
-
-
-	@Override
-	public User findById(String id) {
-		@SuppressWarnings("unchecked")
-		List<User> user = this.entityManager.createNativeQuery("select * from users as u where u.id= :id", User.class)
-											.setParameter("id", id)
-											.getResultList();
-		
-		return user.get(0);
-	}
-
-	
-	
-	
 }

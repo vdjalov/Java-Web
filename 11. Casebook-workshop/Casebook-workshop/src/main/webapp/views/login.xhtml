@@ -6,8 +6,11 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:include src="./templates/head.xhtml" />
-<h:body>
+<ui:include src="templates/head.xhtml"/>
+
+<body>
+<div class="container-fluid">
+
 	<ui:insert>
 		<ui:include src="./templates/guest-header.xhtml" />
 	</ui:insert>
@@ -21,16 +24,18 @@
                 <div class="label-holder d-flex justify-content-center">
                     <label for="username" class="h3 mb-2">Username</label>
                 </div>
-                <h:inputText styleClass="form-control" id="username" value="#{loginUser.userLoginBindingModel.username}" />
+                <h:inputText styleClass="form-control" value="#{loginUser.userLoginBindingModel.username}" />
+          
             </div>
             <div class="form-group">
                 <div class="label-holder d-flex justify-content-center">
                     <label for="password" class="h3 mb-2">Password</label>
                 </div>
-                  <h:inputSecret styleClass="form-control" id="password" value="#{loginUser.userLoginBindingModel.password}" />
+                 <h:inputSecret styleClass="form-control" value="#{loginUser.userLoginBindingModel.password}" />
+              
             </div>
             <div class="button-holder d-flex justify-content-center">
-            	<h:commandButton styleClass="btn btn-info text-white" action="#{loginUser.verifylogin}" value="Login" />
+            	<h:commandButton styleClass="btn btn-info text-white" action="#{loginUser.verifyLoginCredentials()}" value="Login" />
             </div>
         </h:form>
         <hr class="my-3"/>
@@ -40,5 +45,6 @@
 		<ui:include src="./templates/footer.xhtml" />
 	</ui:insert>
 
-</h:body>
+</div>
+</body>
 </html>

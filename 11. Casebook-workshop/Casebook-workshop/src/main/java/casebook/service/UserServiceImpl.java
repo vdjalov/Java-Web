@@ -1,6 +1,5 @@
 package casebook.service;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,94 +8,128 @@ import javax.inject.Inject;
 
 import org.modelmapper.ModelMapper;
 
-import casebook.context.SessionContext;
+import casebook.context.Context;
 import casebook.domain.entity.User;
-import casebook.domain.models.service.UserLoginServiceModel;
-import casebook.domain.models.service.UserRegisterServiceModel;
-import casebook.domain.models.view.FriendViewModel;
-import casebook.domain.models.view.UserViewModel;
+import casebook.domain.model.service.UserLoginServiceModel;
+import casebook.domain.model.service.UserRegisterServiceModel;
+import casebook.domain.model.service.UserServiceModel;
 import casebook.repositories.UserRepository;
+import casebook.util.MyUtils;
 
 public class UserServiceImpl implements UserService {
 
+	private Context context;
 	private ModelMapper modelMapper;
 	private UserRepository userRepository;
-	private SessionContext sessionContext;
+	private MyUtils utils;
 	
 	@Inject
-	public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository, SessionContext sessionContext) {
+	public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository, MyUtils utils, Context context) {
 		this.modelMapper = modelMapper;
 		this.userRepository = userRepository;
-		this.sessionContext = sessionContext;
+		this.utils = utils;
+		this.context = context;
 	}
 
-
-	public UserServiceImpl() {
-	}
 
 
 	@Override
-	public void registerUser(UserRegisterServiceModel userRegisterServiceModel) {
-		User user = this.modelMapper.map(userRegisterServiceModel, User.class);
-		this.userRepository.save(user);
-		
-		this.sessionContext.redirect("login");
+	public void registerUser(UserRegisterServiceModel userServiceModel) {
+		if(this.verifyPasswordMatch(userServiceModel)) {
+			User user = this.modelMapper.map(userServiceModel, User.class);
+			user.setPassword(utils.hashPassword(userServiceModel.getPassword()));
+			this.userRepository.save(user);
+			this.context.redirect("login");
+		} else {
+			this.context.redirect("register");
+		}
+	}
+
+	
+	private boolean verifyPasswordMatch(UserRegisterServiceModel userServiceModel) {
+		return userServiceModel.getPassword().equals(userServiceModel.getConfirmPassword());
 	}
 
 
+
 	@Override
-	public void verify(UserLoginServiceModel userLoginServiceModel) {
+	public void verifyUserLogin(UserLoginServiceModel userLoginServiceModel) {
 		String username = userLoginServiceModel.getUsername();
-		String password = userLoginServiceModel.getPassword();
-			if(userRepository.confirmDetails(username, password)) {
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", username);
-				this.sessionContext.redirect("home");
-			} else {
-				// Do something !
-			}
+		String password = this.utils.hashPassword(userLoginServiceModel.getPassword());
+		if(this.userRepository.confirmCredetials(username, password)) {
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", username);
+			this.context.redirect("home");
+		} else {
+			this.context.redirect("login");
+		};
 		
 	}
 
 
+
 	@Override
-	public List<UserViewModel> findAllUsers() {
-			List<UserViewModel> alluser = this.userRepository.findAllUsers()
-											  .stream()
-											  .map(user -> this.modelMapper.map(user, UserViewModel.class))
-											  .collect(Collectors.toList());
-		return alluser;
+	public List<UserServiceModel> findAllUsers() {
+		return this.userRepository.findAllUsers().stream()
+								  .map(user -> this.modelMapper.map(user, UserServiceModel.class))
+								  .collect(Collectors.toList());
 	}
 
 
+
 	@Override
-	public void addFriend(String friendUsername, String currentLoggedInUsername) {
-		User friend = this.userRepository.findByUsername(friendUsername);
-		this.userRepository.updateUserFriends(friend, currentLoggedInUsername);
+	public List<UserServiceModel> findAllCurrentFriends(String username) {
 		
-		this.sessionContext.redirect("friends");
+		return this.userRepository.findAllFriends(username).stream()
+				  .map(user -> this.modelMapper.map(user, UserServiceModel.class))
+				  .collect(Collectors.toList());
 	}
+
 
 
 	@Override
-	public UserViewModel getCurrentLoggedUser(String username) {
-		User user = this.userRepository.findByUsername(username);
-		return this.modelMapper.map(user, UserViewModel.class);
+	public UserServiceModel getUserByUsername() {
+		String username = this.context.getAttributeMapObject("user");
+		UserServiceModel userServiceModel = this.modelMapper.map(this.userRepository.findUserByUsername(username), UserServiceModel.class);
+		return userServiceModel;
 	}
+
 
 
 	@Override
-	public List<FriendViewModel> findAllFriends(String username) {
-		List<FriendViewModel> allFriends = this.userRepository.findByUsername(username).getFriends()
-												     .stream().map(user -> this.modelMapper.map(user, FriendViewModel.class))
-												     .collect(Collectors.toList());
-		return allFriends;
+	public void addFriend(String friendUsername) {
+		User friend = this.userRepository.findUserByUsername(friendUsername);
+		User user = this.userRepository.findUserByUsername(this.context.getSessionMapObject("username"));
+		friend.getAllFriends().add(user);
+		user.getAllFriends().add(friend);
+		
+		this.userRepository.update(user);
+		this.userRepository.update(friend);
+		this.context.redirect("home");
 	}
+
 
 
 	@Override
-	public FriendViewModel getFriendById(String id) {
-		FriendViewModel friend = this.modelMapper.map(this.userRepository.findById(id), FriendViewModel.class);
-		return friend;
+	public void unfriend(String friendUsername) {
+		User user = this.userRepository.findUserByUsername(this.context.getSessionMapObject("username"));
+		User friend = this.userRepository.findUserByUsername(friendUsername);
+		friend.getAllFriends().remove(user);
+		user.getAllFriends().remove(friend);
+		
+		this.userRepository.update(user);
+		this.userRepository.update(friend);
+		this.context.redirect("friends");
+		
 	}
-
+	
+	
+	
+	
 }
+
+
+
+
+
+
+

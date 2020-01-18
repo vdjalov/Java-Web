@@ -1,51 +1,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:composite="http://java.sun.com/jsf/composite"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-<ui:include src="./templates/head.xhtml" />
+<ui:include src="templates/head.xhtml"/>
+
 <body>
-
+<div class="container-fluid">
 	<ui:insert>
 		<ui:include src="./templates/user-header.xhtml" />
 	</ui:insert>
-	
+
 	<main>
-	     <hr class="my-2"/>
-		    <div class="text-center mt-3">
-		    	<h:form>
-		      	  <h:commandLink styleClass="h4 text-info" action= "profile.xhtml" value="Welcome, #{userDetails.username}"/>
-		      	</h:form>
-		    </div>
-	      <hr class="my-4"/>
-	      <div class="container">
-	      	
-	          <div class="row mb-4 d-flex justify-content-around">
-	          	<c:forEach var="user" items="#{getUsers.registeredUsers}">
-			        <c:if test="#{user.username != userDetails.username}">
-			           <div class="col-md-2 d-flex flex-column text-center">
-			           	 <h:form>
-			              	  <h:graphicImage styleClass="img-thumbnail" value="/png/#{user.gender.toLowerCase()}.png" width="200" height="200"/> 
-			                  <h5 class="text-center"><h:outputFormat value="#{user.username}"/></h5>
-			              
-			                  	<h:inputHidden value="#{user.username}"/>
-			                    <h:commandButton styleClass="btn btn-info" action= "#{addFriendBean.addFriend}" value="Add Friend"/>
-			             </h:form>
-			           </div>
-		            </c:if>
-	             </c:forEach> 
-	     	   </div>
-	     	 </div> 
-	      <hr class="my-3"/>
-	</main>
-	
+        <hr class="my-2"/>
+        <div class="text-center mt-3">
+        	<h:link styleClass="h4 text-info" outcome= "profile.xhtml?user=#{session.getAttribute('username')}" value="Welcome, #{session.getAttribute('username')}"/>
+        </div>
+        <hr class="my-4"/>
+        <div class="container">
+        	
+            <div class="row mb-4 d-flex justify-content-around">
+             	<ui:repeat var="friend" value="#{loadUsers.loadUsers()}" status="">
+	                <div class="col-md-2 d-flex flex-column text-center">
+	                	<h:graphicImage styleClass="img-thumbnail" value="/png/#{friend.gender.toLowerCase()}.png" />
+	                    <h5 class="text-center"><h:outputText value= "#{friend.username}"/></h5>
+	                    <h:form>
+	                   		<h:commandLink styleClass="btn btn-info" action="#{addFriendBean.addFriend(friend.username)}" value="Add Friend" />
+	                   	</h:form>	
+	                </div>
+              </ui:repeat>
+            </div>
+            
+        </div>
+        <hr class="my-3"/>
+    </main>
+
 	<ui:insert>
 		<ui:include src="./templates/footer.xhtml" />
 	</ui:insert>
 	
+</div>
 </body>
 </html>
