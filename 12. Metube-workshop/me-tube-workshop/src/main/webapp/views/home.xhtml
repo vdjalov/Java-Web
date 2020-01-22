@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:insert>
+	<ui:include src="/views/templates/head.xhtml" />
+</ui:insert>
+
+<body>
+
+<ui:insert>
+	<ui:include src="/views/templates/user-header.xhtml" />
+</ui:insert>
+
+<hr class="my-2"/>
+   <div class="text-center mt-3">
+       <h4 class="h4 text-info"><h:outputText value="Welcome, #{session.getAttribute('username')}"/></h4>
+       <h4 class="h4 text-info"><h:outputText value="(#{session.getAttribute('email')})"/></h4>
+   </div>
+   <hr class="my-4"/>
+   <div class="container">
+       ${allTubes}
+   </div>
+<hr class="my-3"/>
+
+<ui:insert>
+	<ui:include src="/views/templates/footer.xhtml" />
+</ui:insert>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:insert>
+	<ui:include src="/views/templates/head.xhtml" />
+</ui:insert>
+
+<body>
+
+<ui:insert>
+	<ui:include src="/views/templates/user-header.xhtml" />
+</ui:insert>
+
+ <hr class="my-2"/>
+    <div class="container-fluid">
+        <h2 class="text-center"><h:outputText value="#{userDetails.getTube().title}"></h:outputText></h2>
+        <div class="row">
+            <div class="col-md-6 my-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/#{userDetails.getTube().youTubeId}" frameborder="0"></iframe>
+                </div>
+            </div>
+            <div class="col-md-6 my-5">
+                <h1 class="text-center text-info"><h:outputText value="#{userDetails.getTube().author}" /></h1>
+                <h3 class="text-center text-info"><h:outputText value="#{userDetails.getTube().views}" /></h3>
+                <div class="h5 my-5 text-center"><h:outputText value="#{userDetails.getTube().description}" /></div>
+            </div>
+        </div>
+    </div>
+    <hr class="my-3"/>
+
+<ui:insert>
+	<ui:include src="/views/templates/footer.xhtml" />
+</ui:insert>
+
+
+</body>
+</html>

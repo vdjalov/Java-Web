@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+<ui:insert>
+	<ui:include src="/views/templates/head.xhtml" />
+</ui:insert>
+
+<body>
+
+	<ui:insert>
+	  <ui:include src="/views/templates/user-header.xhtml" />
+	</ui:insert>
+
+	<hr class="my-2"/>
+    <div class="text-center mt-3">
+        <h4 class="text-info text-center"><h:outputText value="@#{session.getAttribute('username')}"/></h4>
+        <h4 class="text-info text-center"><h:outputText value="#{session.getAttribute('email')}"/></h4>
+    </div>
+    <hr/>
+    <div class="container-fluid">
+        <div class="row d-flex flex-column">
+            <table class="table table-hover table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+	                <ui:repeat var="tube" value="#{userDetails.viewTubes()}" varStatus="status">
+	                	<tr>
+	                		<td><h:outputText value="#{status.index + 1}"/></td>
+	                		<td><h:outputText value="#{tube.title}"/></td>
+	                		<td><h:outputText value="#{tube.author}"/></td>
+	                		<td><h:form><h:link outcome="details.xhtml?youTubeId=#{tube.youTubeId}" value="Details"/></h:form></td>
+	                	</tr>
+	                </ui:repeat>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr class="my-3"/>
+
+	<ui:insert>
+	  <ui:include src="/views/templates/footer.xhtml" />
+	</ui:insert>
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<title>metube</title>
+</head>
+<body>
+	
+	<nav class="navbar navbar-toggleable-md navbar-dark bg-color-dark">
+		
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        	<h:link styleClass="nav-link h4" outcome="index.xhtml" value="MeTube&trade;"/>
+        	
+        <div class="collapse navbar-collapse justify-content-end row" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active col-md-4">
+                	<h:link styleClass= "nav-link h5" outcome="home.xhtml" value="Home"/>
+                </li>
+                <li class="nav-item active col-md-4">
+                	<h:link styleClass="nav-link h5" outcome="login.xhtml" value="Login"/>
+                </li>
+                <li class="nav-item active col-md-4">
+                	<h:link styleClass="nav-link h5" outcome="register.xhtml" value="Register"/>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</body>
+</html>

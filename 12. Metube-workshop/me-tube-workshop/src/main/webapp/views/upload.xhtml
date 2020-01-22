@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:insert>
+	<ui:include src="/views/templates/head.xhtml" />
+</ui:insert>
+
+<body>
+
+	<ui:insert>
+	  <ui:include src="/views/templates/user-header.xhtml" />
+	</ui:insert>
+
+	<hr class="my-2"/>
+    <div class="text-center mb-3">
+        <h1>Upload</h1>
+    </div>
+    <hr class="my-2"/>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="form-holder text-center">
+                <h:form class="form-inline" method="post">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label h3 mb-2" for="title">Title</label>
+                            <div class="controls">
+                            	<h:inputText styleClass="input-xlarge" value="#{uploadTube.uploadTubeBindingModel.title}"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="control-group">
+                            <label class="control-label h3 mb-2" for="author">Author</label>
+                            <div class="controls">
+                            	<h:inputText styleClass="input-xlarge" value="#{uploadTube.uploadTubeBindingModel.author}"/>
+                            </div>
+                        </div>
+                        <br/>
+						<div class="control-group">
+                            <label class="control-label h3 mb-2" for="youtube-link">Youtube Link</label>
+                            <div class="controls">
+                            	<h:inputText styleClass="input-xlarge" value="#{uploadTube.uploadTubeBindingModel.youTubeId}"/>
+                            </div>
+                        </div>
+                        <br/>
+						<div class="control-group">
+                            <label class="control-label h3 mb-2" for="description">Description</label>
+                            <div class="controls">
+                            	<h:inputTextarea  styleClass="input-xlarge" cols="75" rows="4" value="#{uploadTube.uploadTubeBindingModel.description}" />
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="control-group">
+                            <div class="controls">
+                            	<h:commandLink styleClass="btn btn-info" action="#{uploadTube.createTube()}" value="Upload"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </h:form>
+            </div>
+        </div>
+    </div>
+    <hr class="my-3"/>
+
+
+	<ui:insert>
+		<ui:include src="/views/templates/footer.xhtml" />
+	</ui:insert>
+
+</body>
+</html>

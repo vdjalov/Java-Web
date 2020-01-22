@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+<ui:insert>
+	<ui:include src="./templates/head.xhtml" />
+</ui:insert>
+
+<body>
+
+<ui:insert>
+	<ui:include src="./templates/guest-header.xhtml" />
+</ui:insert>
+
+<hr class="my-2"/>
+    <div class="text-center mb-3">
+        <h1>Register</h1>
+    </div>
+    <hr class="my-2"/>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="form-holder text-center">
+                <h:form class="form-inline" method="post">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label h3 mb-2" for="username">Username</label>
+                            <div class="controls">
+                            	<h:inputText styleClass="input-xlarge" value="#{userRegisterBean.registerUserBindingModel.username}" />
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="control-group">
+                            <label class="control-label h3 mb-2" for="password">Password</label>
+                            <div class="controls">
+                            	<h:inputSecret styleClass="input-xlarge" value="#{userRegisterBean.registerUserBindingModel.password}" />
+                            </div>
+                        </div>
+                        <br/>
+						<div class="control-group">
+                            <label class="control-label h3 mb-2" for="confirmPassword">Confirm Password</label>
+                            <div class="controls">
+                            	<h:inputSecret styleClass="input-xlarge" value="#{userRegisterBean.registerUserBindingModel.confirmPassword}" />
+                            </div>
+                        </div>
+                        <br/>
+						<div class="control-group">
+                            <label class="control-label h3 mb-2" for="email">Email</label>
+                            <div class="controls">
+                            	<h:inputText id="email" name="email" styleClass="input-xlarge" value="#{userRegisterBean.registerUserBindingModel.email}" />
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="control-group">
+                            <div class="controls">
+                            	<h:commandLink styleClass="btn btn-info" action="#{userRegisterBean.registerUser}" value="Register" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </h:form>
+            </div>
+        </div>
+    </div>
+    <hr class="my-3"/>
+
+
+<ui:insert>
+	<ui:include src="./templates/footer.xhtml" />
+</ui:insert>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<title>metube</title>
+</head>
+<body>
+
+<ui:component>
+	<nav class="navbar navbar-toggleable-md navbar-dark bg-color-dark">
+	        <h:link class="navbar-brand h4" outcome="index.xhtml" value="MeTube&trade;"/>
+	        <div class="collapse navbar-collapse justify-content-end row" id="navbarSupportedContent">
+	            <ul class="navbar-nav ml-auto">
+	                <li class="nav-item active col-md-3">
+	                  <h:link styleClass="navbar-brand h4" outcome="home.xhtml" value="Home"/>
+	                </li>
+	                <li class="nav-item active col-md-3">
+	                  <h:link styleClass="navbar-brand h4" outcome="profile.xhtml" value="Profile"/>
+	                </li>
+	                <li class="nav-item active col-md-3">
+	                  <h:link styleClass="navbar-brand h4" outcome="upload.xhtml" value="Upload"/>
+	                </li>
+	                <li class="nav-item active col-md-3">
+	                <h:form>
+	                  <h:commandLink styleClass="navbar-brand h4" outcome="logout.xhtml" value="Logout"/>
+	                </h:form> 
+	                </li>
+	            </ul>
+	        </div>
+	    </nav>
+</ui:component>
+
+</body>
+</html>

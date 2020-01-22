@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:insert>
+	<ui:include src="./templates/head.xhtml" />
+</ui:insert>
+
+<body>
+	
+<ui:insert>
+	<ui:include src="./templates/guest-header.xhtml" />
+</ui:insert>
+
+<hr class="my-3"/>
+    <div class="jumbotron">
+        <p class="h1 display-3">Welcome to MeTube&trade;!</p>
+        <p class="h3">The simplest, easiest to use, most comfortable Multimedia Application.</p>
+        <hr class="my-3"/>
+        	
+        <p><h:link outcome="login.xhtml" value="Login"/> if you have an account or <h:link outcome="register.xhtml" value="Register"/> now and start tubing.</p>
+    </div>
+<hr class="my-3"/>
+
+<ui:insert>
+	<ui:include src="./templates/footer.xhtml" />
+</ui:insert>
+
+</body>
+</html>
