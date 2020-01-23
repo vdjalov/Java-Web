@@ -5,13 +5,13 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.modelmapper.ModelMapper;
 
 import app.context.Context;
+import app.domain.model.view.GetUserViewModel;
 import app.domain.model.view.ProfileTubesViewModel;
 import app.domain.model.view.TubeDetailsViewModel;
 import app.service.TubeService;
@@ -25,7 +25,7 @@ public class UserProfileDetailsBean {
 	private UserService userService;
 	private Context context;
 	private TubeService tubeService;
-	
+	private String username;
 	
 	public UserProfileDetailsBean() {
 	}
@@ -39,10 +39,14 @@ public class UserProfileDetailsBean {
 		this.tubeService = tubeService;
 	}
 	
+	@PostConstruct
+	private void init() {
+		this.username = this.context.getSessionMapObject("username");
+	}
+	
 	
 	public List<ProfileTubesViewModel>viewTubes() {
-		String username = this.context.getSessionMapObject("username");
-		List<ProfileTubesViewModel> allTubes = this.userService.getUserTubes(username).stream()
+		List<ProfileTubesViewModel> allTubes = this.userService.getUserTubes(this.username).stream()
 												   .map(tube -> this.modelMapper.map(tube, ProfileTubesViewModel.class))
 												   .collect(Collectors.toList());
 		return allTubes;
@@ -56,6 +60,24 @@ public class UserProfileDetailsBean {
 	}
 	
 	
+	public void logoutUser() {
+		this.context.invalidateUserSession();
+		this.context.redirect("index");
+	}
+	
+	public GetUserViewModel getUser() {
+		return this.modelMapper.map(this.userService.getUserByUsername(this.username), GetUserViewModel.class);
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	
 }
 

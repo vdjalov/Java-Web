@@ -41,8 +41,13 @@ public class UserRegisterBean {
 	
 	
 	public void registerUser() {
-		this.userService.save(this.modelMapper.map(registerUserBindingModel, RegisterUserServiceModel.class));
-		this.context.redirect("login");
+		if(this.userService.validatePassword(this.registerUserBindingModel)) {
+			this.userService.save(this.modelMapper.map(registerUserBindingModel, RegisterUserServiceModel.class));
+			this.context.redirect("login");
+		} else {
+			this.context.redirect("register");
+		}
+		
 	}
 
 

@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import app.context.Context;
 import app.domain.entity.Tube;
 import app.domain.entity.User;
-import app.domain.model.service.TubeDetailsServiceModel;
 
 public class TubeRepositoryImpl implements TubeRepository {
 
@@ -41,7 +40,8 @@ public class TubeRepositoryImpl implements TubeRepository {
 	@Override
 	public List<Tube> findAllTubes() {
 		@SuppressWarnings("unchecked")
-		List<Tube> allTubes = (List<Tube>) this.entityManager.createNativeQuery("select * from tubes", Tube.class);
+		List<Tube> allTubes = (List<Tube>) this.entityManager.createNativeQuery("select * from tubes", Tube.class)
+															 .getResultList();
 		return allTubes;
 	}
 

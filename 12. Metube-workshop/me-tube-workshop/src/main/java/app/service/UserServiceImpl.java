@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.modelmapper.ModelMapper;
 
 import app.domain.entity.User;
+import app.domain.model.binding.RegisterUserBindingModel;
+import app.domain.model.service.GetUserServiceModel;
 import app.domain.model.service.LoginUserServiceModel;
 import app.domain.model.service.ProfileTubesServiceModel;
 import app.domain.model.service.RegisterUserServiceModel;
@@ -63,5 +65,16 @@ public class UserServiceImpl implements UserService {
 							   .map(tube -> this.modelMapper.map(tube, ProfileTubesServiceModel.class))
 							   .collect(Collectors.toList());
 		
+	}
+
+	@Override
+	public boolean validatePassword(RegisterUserBindingModel registerUserBindingModel) {
+		return registerUserBindingModel.getPassword().equals(registerUserBindingModel.getConfirmPassword());
+	}
+
+	@Override
+	public GetUserServiceModel getUserByUsername(String username) {
+		GetUserServiceModel getUserServiceModel = this.modelMapper.map(this.userRepository.findByUsername(username), GetUserServiceModel.class);
+		return getUserServiceModel;
 	}
 }

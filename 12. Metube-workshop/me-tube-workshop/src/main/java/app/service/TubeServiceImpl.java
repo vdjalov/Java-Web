@@ -1,6 +1,7 @@
 package app.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -8,10 +9,9 @@ import org.modelmapper.ModelMapper;
 
 import app.domain.entity.Tube;
 import app.domain.model.service.TubeDetailsServiceModel;
+import app.domain.model.service.TubesServiceModel;
 import app.domain.model.service.UploadTubeServiceModel;
-import app.domain.model.view.TubeDetailsViewModel;
 import app.repository.TubeRepository;
-import net.bytebuddy.asm.Advice.This;
 
 public class TubeServiceImpl implements TubeService {
 
@@ -34,9 +34,11 @@ public class TubeServiceImpl implements TubeService {
 	}
 
 	@Override
-	public List<UploadTubeServiceModel> allTubes() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TubesServiceModel> allTubes() {
+		  return this.tubeRepository.findAllTubes()
+				  		   .stream().map(tube -> this.modelMapper.map(tube, TubesServiceModel.class))
+				  		   			.collect(Collectors.toList());
+		 
 	}
 
 	@Override

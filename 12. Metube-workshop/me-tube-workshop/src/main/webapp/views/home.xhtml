@@ -19,11 +19,24 @@
 <hr class="my-2"/>
    <div class="text-center mt-3">
        <h4 class="h4 text-info"><h:outputText value="Welcome, #{session.getAttribute('username')}"/></h4>
-       <h4 class="h4 text-info"><h:outputText value="(#{session.getAttribute('email')})"/></h4>
    </div>
    <hr class="my-4"/>
    <div class="container">
-       ${allTubes}
+      
+       <ui:repeat var="tube" value="#{tubeDetails.loadTubes()}" varStatus="status">
+       <h:outputText value="&lt;div class=&quot;row mb-4 d-flex justify-content-around&quot;&gt;"
+                              escape="false" rendered="#{status.index % 3 == 0}"/>
+       	 <div class="d-inline-block ml-3" style="width: 340px">
+       	 	<h:graphicImage class="d-inline" value="http://img.youtube.com/vi/#{tube.youTubeId}/0.jpg" width="350px"/>
+       	 	 <div>
+	       	  <span><h:outputText value="#{tube.title}" style="width: 340px"/></span>
+	       	  <br />
+	       	  <span><h:outputText value="#{tube.uploader.username}"/></span>
+       	 	</div>
+       	 </div>
+       	   <h:outputText value="&lt;/div&gt;" escape="false" rendered="#{status.index % 3 == 2}"/>
+       </ui:repeat>
+       
    </div>
 <hr class="my-3"/>
 
