@@ -2,6 +2,8 @@ package app.web;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -43,15 +45,20 @@ public class UserLoginBean {
 		if(this.userService.verifyLogin(this.modelMapper.map(this.loginUserBindingModel, LoginUserServiceModel.class))) {
 			this.context.redirect("home");
 		} else {
-			// do something
-		}
 		
+			FacesContext.getCurrentInstance().addMessage(
+	                null,
+	                new FacesMessage(FacesMessage.SEVERITY_WARN,
+	                        "username or password incorrect", "title"));
+
+			FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds()
+			.add("loginUser");
+//			this.context.redirect("login");
+		}
 		
 	}
 	
 	
-	
-
 	public LoginUserBindingModel getLoginUserBindingModel() {
 		return loginUserBindingModel;
 	}
